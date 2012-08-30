@@ -13,7 +13,7 @@ describe "Static pages" do
     it "should have the right title 'Home'" do
       visit '/static_pages/home'
       page.should have_selector('title', 
-                  :text => base_title + "Home")
+                  text: base_title + "Home")
     end
   end
 
@@ -25,7 +25,7 @@ describe "Static pages" do
 
     it "should have the right title 'Help'" do
       visit '/static_pages/help'
-      page.should have_selector('title', :text => base_title + "Help")
+      page.should have_selector('title', text: base_title + "Help")
     end
   end
 
@@ -37,7 +37,7 @@ describe "Static pages" do
 
     it "should have the right title 'About Us'" do
       visit '/static_pages/about'
-      page.should have_selector('title', :text => base_title + "About Us")
+      page.should have_selector('title', text: base_title + "About Us")
     end
   end
 
@@ -49,7 +49,7 @@ describe "Static pages" do
 
     it "should have the right title 'Contact Us'" do
       visit '/static_pages/contact'
-      page.should have_selector('title', :text => base_title + "Contact Us")
+      page.should have_selector('title', text: base_title + "Contact Us")
     end
   end
 end
