@@ -3,6 +3,10 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.8'
 gem 'bootstrap-sass', '2.0.0'
 
+group :development do
+  gem 'annotate', '2.5.0'
+end
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do
@@ -25,6 +29,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+
 
 group :test do
 	gem 'capybara', '1.1.2'
