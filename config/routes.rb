@@ -1,6 +1,6 @@
 SampleApp::Application.routes.draw do
 
-  get "users/new"
+  resources :users
 
   #static pages
   root to:"static_pages#home"
@@ -12,7 +12,7 @@ SampleApp::Application.routes.draw do
   match '/contact', to:"static_pages#contact"
 
   # user pages
-  match '/signup', to:"user#new"
+  match '/signup', to:"users#new"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
