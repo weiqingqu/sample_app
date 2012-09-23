@@ -60,8 +60,11 @@ describe "UserPages" do
         it { should have_selector('div.alert.alert-success', text:'Welcome')}
         it {should have_selector('title', text:full_title("Example User"))}
 
-        it { should }
+        it { should have_link('Sign out') }
       end
+
+
+
     end
 
   end
