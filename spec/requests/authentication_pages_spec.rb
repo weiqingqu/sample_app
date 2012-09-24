@@ -24,10 +24,11 @@ describe "AuthenticationPages" do
 
     describe "with valid information" do
       let(:user) { FactoryGirl.create(:user) }
-      before { valid_signin(user) }
+      before { signin(user) }
 
       it { should have_selector('title', text: user.name) }
       it { should have_link('Profile', herf: user_path(user)) }
+      it { should have_link('Settings', herf: edit_user_path(user))}
       it { should have_link('Sign out', herf: signout_path) }
       it { should_not have_link('Sign in', href: signin_path) }
 
