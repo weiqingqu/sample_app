@@ -24,7 +24,7 @@ describe "AuthenticationPages" do
 
     describe "with valid information" do
       let(:user) { FactoryGirl.create(:user) }
-      before { signin(user) }
+      before { sign_in(user) }
 
       it { should have_selector('title', text: user.name) }
       it { should have_link('Profile', herf: user_path(user)) }
@@ -41,4 +41,26 @@ describe "AuthenticationPages" do
 
   end
 
+  describe "authorization" do
+    describe "for non-signed-in users" do
+      let(:user) { FactoryGirl.create(:user) }
+
+      describe "in the Users controller" do
+
+        describe "visiting the edit page" do
+          before { visit edit_user_path(user) }
+          it { should have_selector('title', text:'Sign in') }
+        end
+
+        describe "submitting to the update action" do
+          before { put user_path(user) }
+          specify { response.should redirect_to(signin_path) }
+        end
+
+      end
+
+
+
+    end
+  end
 end
