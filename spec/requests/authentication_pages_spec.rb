@@ -27,6 +27,7 @@ describe "AuthenticationPages" do
       before { sign_in(user) }
 
       it { should have_selector('title', text: user.name) }
+      it { should have_link('Users', herf: users_path) }
       it { should have_link('Profile', herf: user_path(user)) }
       it { should have_link('Settings', herf: edit_user_path(user))}
       it { should have_link('Sign out', herf: signout_path) }
