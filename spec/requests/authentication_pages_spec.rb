@@ -33,6 +33,16 @@ describe "AuthenticationPages" do
       it { should have_link('Sign out', herf: signout_path) }
       it { should_not have_link('Sign in', href: signin_path) }
 
+      describe "submitting a GET request to the Users#new action" do
+        before { get new_user_path }
+        specify { response.should redirect_to(root_path) }
+      end
+
+      describe "submitting a POST request to the Users#create action" do
+        before { post users_path }
+        specify { response.should redirect_to(root_path) }
+      end
+
       describe "followed by signout" do
         before { click_link "Sign out" }
         it { should have_link('Sign in') }
@@ -80,6 +90,13 @@ describe "AuthenticationPages" do
         end
 
       end
+
+      describe "check links that only appear when user signed in" do
+        before { visit root_path }
+        it { should_not have_link('Profile', herf: user_path(user)) }
+        it { should_not have_link('Settings', herf: edit_user_path(user))}
+      end
+
 
     end
 

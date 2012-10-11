@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_filter :signed_in_user, only: [:edit, :update, :index, :destory]
+  before_filter :signed_in_user_actions_not_allowed, only: [:new, :create]
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user, only: :destroy
 
@@ -44,7 +45,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
+
+    @user = User.find(params[:id])
+
+    #不允许管理员删除自己
+    redirect_to(root_path) if current_user?(@user)
+
+    @user.destroy
     flash[:success] = "User destroyed."
     redirect_to users_url
   end
@@ -54,6 +61,12 @@ class UsersController < ApplicationController
       unless signed_in?
         store_location
         redirect_to signin_url, notice:"Please sign in."
+      end
+    end
+
+    def signed_in_user_actions_not_allowed
+      if signed_in?
+        redirect_to root_path
       end
     end
 
